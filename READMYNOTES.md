@@ -55,9 +55,20 @@ integration tests:
 3. '$ rake spec'
 They should all pass
 
+
+### Jenkins Automation
+
+1. Make a change to your code in the virtual machine, and pushes changes to your branch on GitHub
+2. A Github webhook sends a POST request to your Jenkins server
+3. When the webhook successfully connects to Jenkins server, a build is triggered.
+4. Jenkins will build your software
+5. After building, Jenkins server will test your code using a predefined bash script
+6. It will be shown on the build logs if your tests pass or fail
+7. Then it will merge the code pushed to your dev branch, with the master branch on GitHub
 ---------------------------------------------
 
 ### BLOCKERS
 
-`$ npm test`
-tests failing in vagrant ssh; nodejs app still listening. 
+`$ npm test` tests failing in vagrant ssh; nodejs app still listening.
+
+difficulty attempting to run provision.sh script in machine
