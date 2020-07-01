@@ -60,4 +60,4 @@ They should all pass
 ### BLOCKERS
 
 `$ npm test`
-tests failing in vagrant ssh, nodejs app still listening. 
+tests failing in vagrant ssh; nodejs app still listening. 
