@@ -1,9 +1,10 @@
 # User Installation
 
 ## Prerequisites
-		- Ruby (at least v2.6) & Bundler
-		- VirtualBox
-    - Vagrant
+
+- Ruby (at least v2.6) & Bundler
+- VirtualBox
+- Vagrant
 
 ## Steps
 
