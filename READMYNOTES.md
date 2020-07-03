@@ -65,10 +65,77 @@ They should all pass
 5. After building, Jenkins server will test your code using a predefined bash script
 6. It will be shown on the build logs if your tests pass or fail
 7. Then it will merge the code pushed to your dev branch, with the master branch on GitHub
+
+### Reverse-Proxy
+
+- unlink default file
+`$ sudo unlink /etc/nginx/sites-enabled/default`
+
+- `$ cd /etc/nginx/sites-available`
+- `$ touch reverse-proxy.conf`
+
+- paste this into reverse-proxy.conf file
+
+- - for local VM:
+server {
+        listen 80;
+        listen [::]:80;
+
+        access_log /var/log/nginx/reverse-access.log;
+        error_log /var/log/nginx/reverse-error.log;
+
+        location / {
+                    proxy_pass http://192.168.10.100:3000/;
+  }
+}
+
+- - for AWS:
+server {
+        listen 80;
+        listen [::]:80;
+
+        access_log /var/log/nginx/reverse-access.log;
+        error_log /var/log/nginx/reverse-error.log;
+
+        location / {
+                    proxy_pass http://{public-ip}:3000/;
+  }
+}
+
+- create symlink
+`sudo ln -s /etc/nginx/sites-available/reverse-proxy.conf /etc/nginx/sites-enabled/reverse-proxy.conf`
+
+- test nginx config
+`nginx -t`
+(may have to sudo for local VM)
+(will have to reboot BEFORE TESTING for AWS)
+==> tests should pass
+
+- Reboot AWS
+
+- Now run the app; public_ip should take you to public_ip:3000
+
+### pm2
+
+- `pm2 start app.js` - runs app forever
+- `pm2 ps` - lists pm2 processes
+- `pm2 stop {id}` - stops process corresponding to ip
 ---------------------------------------------
 
 ### BLOCKERS
 
-`$ npm test` tests failing in vagrant ssh; nodejs app still listening.
+- reverse proxy on AWS; receiving "504 Gateway Error - Timeout"
 
-difficulty attempting to run provision.sh script in machine
+- `$ npm test` tests failing in vagrant ssh; nodejs app still listening.
+
+- difficulty attempting to run provision.sh script in machine
+SOLUTION:
+convert provision.sh to UNIX file using `dos2unix provision.sh`
+
+- npm start errors
+SOLUTION:  
+remove DB_HOST environment variable
+install version node.v10
+
+- pm2 start; "ecosystem.config.js not found"
+SOLUTION: specify the app you wish to run >> `pm2 start app.js`
