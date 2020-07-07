@@ -125,6 +125,7 @@ server {
 ### BLOCKERS
 
 - reverse proxy on AWS; receiving "504 Gateway Error - Timeout"
+SOLUTION: ip = 127.0.0.1:3000
 
 - `$ npm test` tests failing in vagrant ssh; nodejs app still listening.
 

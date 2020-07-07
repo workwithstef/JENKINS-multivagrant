@@ -27,6 +27,6 @@ sudo rm /etc/nginx/sites-available/default
 sudo cp /home/ubuntu/default.conf /etc/nginx/sites-available/default
 
 # npm install and start
-# echo 'export DB_HOST=mongodb://192.168.10.200:27017/posts' >> ~/.bashrc
+echo 'export DB_HOST=mongodb://22.0.2.148:27017/posts' >> ~/.bashrc
 sudo service nginx restart
 # sudo npm install

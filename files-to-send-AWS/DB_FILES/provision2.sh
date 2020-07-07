@@ -8,4 +8,3 @@ sudo sed -i "s,\\(^[[:blank:]]*bindIp:\\) .*,\\1 0.0.0.0," /etc/mongod.conf
 sudo systemctl start mongod
 sudo systemctl status mongod
 sudo systemctl enable mongod
-
