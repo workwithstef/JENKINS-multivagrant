@@ -120,6 +120,8 @@ server {
 - `pm2 start app.js` - runs app forever
 - `pm2 ps` - lists pm2 processes
 - `pm2 stop {id}` - stops process corresponding to ip
+
+
 ---------------------------------------------
 
 ### BLOCKERS
